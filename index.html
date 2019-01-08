@@ -22,16 +22,17 @@
         class Index {
             constructor() {
                 this.makeGlobal('__', new ProxifyHook(InitBasic).get())
-                this.head = __(document.getElementsByTagName('head')[0])
-                this.body = __(document.getElementsByTagName('body')[0])
+                this.headEl = __(document.getElementsByTagName('head')[0])
+                this.titleEl = __(document.getElementsByTagName('title')[0])
+                this.bodyEl = __(document.getElementsByTagName('body')[0])
                 this.contentEl = new Content
-                this.loadingEl = new Loading(this.head)
-                this.setup(this.body)
+                this.loadingEl = new Loading(this.headEl)
+                this.setup(this.bodyEl)
             }
             setup(body){
                 body
                     .$appendChildren([
-                        new Menu(this.contentEl, this.loadingEl),
+                        new Menu(this.contentEl, this.titleEl, this.loadingEl),
                         this.contentEl
                     ])
                     // above renders out, so that AnchorMenu can grab body.h2 tags
