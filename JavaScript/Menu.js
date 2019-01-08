@@ -38,7 +38,7 @@ export default class Menu {
           )
         }
       }
-      console.log('changed', children);
+      console.log('changed2', children);
       this.menuEl
         .appendChild(__('ul'))
           .$appendChildren(children)
