@@ -33,10 +33,12 @@
                 body
                     .$appendChildren([
                         new Menu(this.contentEl, this.titleEl, this.loadingEl),
+                        // TODO: Add LanguageMenu to set localStorage.setItem('language', 'de'|'ja'|...) and location.reload (Menu.js->load has support)
+                        this.loadingEl,
                         this.contentEl
                     ])
                     // above renders out, so that AnchorMenu can grab body.h2 tags
-                    .$_insertBefore(new AnchorMenu(body), this.contentEl)
+                    .$_insertBefore(new AnchorMenu(body), this.loadingEl)
                 new Scroll()
             }
             makeGlobal(name, obj) {

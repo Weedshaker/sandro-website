@@ -25,6 +25,7 @@ export default class Loading {
   }
   html(el){
     return el
+      .$setId('loading')
       .$setInnerHTML('<span>.</span><span>.</span><span>.</span>')
       .$css([
         ` span{
@@ -40,5 +41,7 @@ export default class Loading {
           animation-delay: .4s;
         }`
       ], 'loading')
+      .$setShow(() => el.style.visibility = 'visible')
+      .$setHide(() => el.style.visibility = 'hidden')
   }
 }
