@@ -9,57 +9,33 @@
 </head>
 <body>
     <script rel="modulepreload" type="module">
-        /*
-        // menu.json
-        // translation with fallback
-        // add catch, add localStorage cache
-        fetch('./index.html').then((res)=>{res.text().then((text) => {console.log(text)})})
-        */
-
         import { ProxifyHook } from './proxifyjs/JavaScript/Classes/Helper/ProxifyHook.js'
         import { InitBasic } from './proxifyjs/JavaScript/Classes/Controller/InitBasic.js'
-        // Docs
-        import TitleDocs from './proxifyjs/Docs/TitleDocs.js'
-        import HowDocs from './proxifyjs/Docs/HowDocs.js'
-        import WhyDocs from './proxifyjs/Docs/WhyDocs.js'
-        import TrapsDocs from './proxifyjs/Docs/TrapsDocs.js'
-        import ChainDocs from './proxifyjs/Docs/Examples/ChainDocs.js'
-        import CssDocs from './proxifyjs/Docs/Examples/CssDocs.js'
-        import DebugDocs from './proxifyjs/Docs/Examples/DebugDocs.js'
-        import EventsDocs from './proxifyjs/Docs/Examples/EventsDocs.js'
-        import HtmlDocs from './proxifyjs/Docs/Examples/HtmlDocs.js'
-        import SubscribeDocs from './proxifyjs/Docs/Examples/SubscribeDocs.js'
-        import LocalStorageDocs from './proxifyjs/Docs/Examples/LocalStorageDocs.js'
-        import TryCatchDocs from './proxifyjs/Docs/Examples/TryCatchDocs.js'
-        import TypesDocs from './proxifyjs/Docs/Examples/TypesDocs.js'
-        import WebWorkersDocs from './proxifyjs/Docs/Examples/WebWorkersDocs.js'
         // Menu
         import AnchorMenu from './proxifyjs/Docs/AnchorMenu.js'
         import Scroll from './proxifyjs/Docs/Scroll.js'
+        import Menu from './JavaScript/Menu.js'
+        // HTML El's
+        import Content from './JavaScript/Content.js'
+        import Loading from './JavaScript/Loading.js'
 
         class Index {
             constructor() {
                 this.makeGlobal('__', new ProxifyHook(InitBasic).get())
-                const body = __(document.getElementsByTagName('body')[0])
-                      .$setStyle('background: GhostWhite; font-family: "Open Sans", sans-serif;')
-                      .$appendChildren([
-                          new TitleDocs,
-                          new HowDocs,
-                          new WhyDocs,
-                          new TrapsDocs,
-                          new ChainDocs(this.makeGlobal),
-                          new CssDocs(this.makeGlobal),
-                          new DebugDocs(this.makeGlobal),
-                          new EventsDocs(this.makeGlobal),
-                          new HtmlDocs(this.makeGlobal),
-                          new SubscribeDocs(this.makeGlobal),
-                          new LocalStorageDocs(this.makeGlobal),
-                          new TryCatchDocs(this.makeGlobal),
-                          new TypesDocs(this.makeGlobal),
-                          new WebWorkersDocs(this.makeGlobal)
-                      ])
-                // above renders out, so that AnchorMenu can grab body.h2 tags
-                body.insertBefore(new AnchorMenu(body), body.children[2])
+                this.head = __(document.getElementsByTagName('head')[0])
+                this.body = __(document.getElementsByTagName('body')[0])
+                this.contentEl = new Content
+                this.loadingEl = new Loading(this.head)
+                this.setup(this.body)
+            }
+            setup(body){
+                body
+                    .$appendChildren([
+                        new Menu(this.contentEl, this.loadingEl),
+                        this.contentEl
+                    ])
+                    // above renders out, so that AnchorMenu can grab body.h2 tags
+                    .$_insertBefore(new AnchorMenu(body), this.contentEl)
                 new Scroll()
             }
             makeGlobal(name, obj) {
