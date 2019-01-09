@@ -69,7 +69,7 @@ export default class Menu {
                                   if(onclick){
                                     receiver.$onclick(onclick, 'remove')
                                     receiver.click()
-                                  }else if(children[0]) {
+                                  }else if(children.length > 1) {
                                     receiver.parentElement.remove()
                                     children.splice(children.indexOf(receiver), 1)
                                     children[0].getElementsByTagName('a')[0].click() // activate first
