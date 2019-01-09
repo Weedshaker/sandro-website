@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<translations>
+    <translation id="startTestLevel1">
+        <en_us>Start Test Level 1</en_us>
+        <de_de>Test Level 1 starten</de_de>
+    </translation>
+    <translation id="loadSaveGame">
+        <en_us>Load/Save Game</en_us>
+        <de_de>Spiel laden/speichern</de_de>
+    </translation>
+    <translation id="settings">
+        <en_us>Settings</en_us>
+        <de_de>Einstellungen</de_de>
+    </translation>
+    <translation id="language">
+        <en_us>Language</en_us>
+        <de_de>Sprache</de_de>
+    </translation>
+    <translation id="english">
+        <en_us>English</en_us>
+        <de_de>Englisch</de_de>
+    </translation>
+    <translation id="german">
+        <en_us>German</en_us>
+        <de_de>Deutsch</de_de>
+    </translation>
+    <translation id="Back">
+        <en_us>&lt; back</en_us>
+        <de_de>&lt; zurück</de_de>
+    </translation>
+    <translation id="mainMenu">
+        <en_us>Main Menu</en_us>
+        <de_de>Hauptmenü</de_de>
+    </translation>
+    <translation id="resume">
+        <en_us>Resume</en_us>
+        <de_de>Fortsetzen</de_de>
+    </translation>
+</translations>

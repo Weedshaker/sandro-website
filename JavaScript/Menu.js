@@ -1,9 +1,10 @@
 /* global __ */
 
 export default class Menu {
-  constructor(contentEl, titleEl, loadingEl) {
+  constructor(contentEl, titleEl, baseEl, loadingEl) {
     this.contentEl = contentEl
     this.titleEl = titleEl
+    this.baseEl = baseEl
     this.loadingEl = loadingEl
 
     this.language = localStorage.getItem('language') || ''
@@ -48,12 +49,26 @@ export default class Menu {
                           event.preventDefault()
                           if(activePage !== name){
                             this.loadingEl.show() // set loading
-                            const setInnerHTML = () => {
+                            const setInnerHTML = (activateJS = false) => {
                               if (memory.title && memory.title !== this.titleEl.innerHTML) this.titleEl.$setInnerHTML(memory.title)
                               if(memory.body && memory.body !== this.contentEl.innerHTML){
                                 activePage = name
                                 this.setActiveClass(children, activePage)
-                                this.contentEl.$setInnerHTML(memory.body)
+                                if(/.*<script.*/mgi.test(memory.body)){
+                                  //iframe
+                                  this.contentEl
+                                    .$setInnerHTML('')
+                                      .appendChild(__('iframe')
+                                      .$setSrc(path))
+                                      .$setWidth(screen.width)
+                                      .$setHeight(screen.height)
+                                      // TODO: Iframe & transitions
+                                }else{
+                                  this.baseEl.$setHref(path.replace(/(.*\/).*?\.[a-zA-Z]{4}$/, '$1'))
+                                  this.contentEl.$setInnerHTML(memory.body)
+                                  this.baseEl.$setHref('./')
+                                }
+                                //if (activateJS) this.activateJS(this.contentEl)
                                 this.loadingEl.hide()
                               }
                             }
@@ -63,7 +78,7 @@ export default class Menu {
                               if (memory.raw && memory.raw.length) __(this).$wwRegex((newMemory) => {
                                 if(newMemory){
                                   memory = Object.assign(memory, newMemory)
-                                  setInnerHTML() // get new results
+                                  setInnerHTML(true) // get new results
                                 }else{
                                   // at regex error
                                   if(onclick){
@@ -112,11 +127,24 @@ export default class Menu {
     try{
       return {
         title: /.*<title>(.*?)<\/title>/mgi.exec(text)[1],
-        body: /.*<body>((.|[\n\r])*)<\/body>/mgi.exec(text)[1]
+        body: /.*<body.*?>((.|[\n\r])*)<\/body>/mgi.exec(text)[1]
       }
     }catch(e){
       console.warn(`Page at "${path}" could not be processed: ${e.message}. Change html to have title and body tag!`)
       return null
     }
+  }
+  activateJS(el){
+    Array.from(el.getElementsByTagName('script')).forEach(script => {
+      if(script.innerHTML){
+        eval(script.innerHTML)
+      }else if(script.src){
+        const newScript = document.createElement('script')
+        newScript.src = script.src
+        script.remove()
+        el.appendChild(newScript)
+        console.log(this.baseEl.href)
+      }
+    })
   }
 }

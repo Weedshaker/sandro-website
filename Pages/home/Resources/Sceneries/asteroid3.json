@@ -1,0 +1,47 @@
+	{ 
+		
+		"asteroid3": [
+			
+				{
+					"density": 2, "friction": 0, "bounce": 0, 
+					"filter": { "categoryBits": 1, "maskBits": 65535 },
+					"shape": [   80, 185  ,  246, 29  ,  234, 180  ,  149, 204  ,  104, 208  ]
+				}  ,
+				{
+					"density": 2, "friction": 0, "bounce": 0, 
+					"filter": { "categoryBits": 1, "maskBits": 65535 },
+					"shape": [   289, 130  ,  234, 180  ,  246, 29  ,  298, 99  ,  300, 115  ]
+				}  ,
+				{
+					"density": 2, "friction": 0, "bounce": 0, 
+					"filter": { "categoryBits": 1, "maskBits": 65535 },
+					"shape": [   234, 180  ,  289, 130  ,  287, 157  ]
+				}  ,
+				{
+					"density": 2, "friction": 0, "bounce": 0, 
+					"filter": { "categoryBits": 1, "maskBits": 65535 },
+					"shape": [   0, 129  ,  39, 66  ,  96, 8  ,  122, 0  ,  147, 0  ,  246, 29  ,  80, 185  ,  31, 170  ]
+				}  ,
+				{
+					"density": 2, "friction": 0, "bounce": 0, 
+					"filter": { "categoryBits": 1, "maskBits": 65535 },
+					"shape": [   96, 8  ,  39, 66  ,  56, 32  ]
+				}  ,
+				{
+					"density": 2, "friction": 0, "bounce": 0, 
+					"filter": { "categoryBits": 1, "maskBits": 65535 },
+					"shape": [   187, 217  ,  149, 204  ,  234, 180  ,  219, 202  ,  201, 215  ]
+				}  ,
+				{
+					"density": 2, "friction": 0, "bounce": 0, 
+					"filter": { "categoryBits": 1, "maskBits": 65535 },
+					"shape": [   39, 66  ,  0, 129  ,  3, 107  ]
+				}  ,
+				{
+					"density": 2, "friction": 0, "bounce": 0, 
+					"filter": { "categoryBits": 1, "maskBits": 65535 },
+					"shape": [   246, 29  ,  147, 0  ,  208, 4  ,  225, 10  ]
+				}  
+		]
+		
+	}

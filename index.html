@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="./">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="shortcut icon" href="./favicon.gif" type="image/x-icon" />
     <title>Shoga9Team</title>
 </head>
 <body>
@@ -23,6 +24,7 @@
             constructor() {
                 this.makeGlobal('__', new ProxifyHook(InitBasic).get())
                 this.headEl = __(document.getElementsByTagName('head')[0])
+                this.baseEl = __(document.getElementsByTagName('base')[0])
                 this.titleEl = __(document.getElementsByTagName('title')[0])
                 this.bodyEl = __(document.getElementsByTagName('body')[0])
                 this.contentEl = new Content
@@ -32,7 +34,7 @@
             setup(body){
                 body
                     .$appendChildren([
-                        new Menu(this.contentEl, this.titleEl, this.loadingEl),
+                        new Menu(this.contentEl, this.titleEl, this.baseEl, this.loadingEl),
                         // TODO: Add LanguageMenu to set localStorage.setItem('language', 'de'|'ja'|...) and location.reload (Menu.js->load has support)
                         this.loadingEl,
                         this.contentEl
@@ -46,6 +48,17 @@
             }
         }
         new Index()
+    </script>
+    <script>
+            (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-76753121-2', 'auto');
+        ga('send', 'pageview');
     </script>
 </body>
 </html>
