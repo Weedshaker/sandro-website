@@ -41,6 +41,14 @@
                     ])
                     // above renders out, so that AnchorMenu can grab body.h2 tags
                     .$_insertBefore(new AnchorMenu(body), this.loadingEl)
+                    .$css(`{
+                        display: grid;
+                        grid-template-areas: "menu menu"
+                                             "loading loading"
+                                             "content content";
+                        grid-template-columns: 1fr 2fr;
+                        grid-template-rows: 2fr 1fr minmax(2fr, auto);
+                    }`)
                 new Scroll()
             }
             makeGlobal(name, obj) {

@@ -7,6 +7,8 @@ export default class Menu {
     this.baseEl = baseEl
     this.loadingEl = loadingEl
 
+    this.name = 'menu'
+    this.activePage = ''
     this.language = localStorage.getItem('language') || ''
     this.menu = null // will hold the object of menu.json
     this.menuEl = this.html(__('section'))
@@ -15,7 +17,8 @@ export default class Menu {
   }
   html(el){
     return el
-      .$setId('menu')
+      .$setId(this.name)
+      .$css(`{grid-area: ${this.name};}`)
   }
   async setup(menuEl){
     this.loadingEl.show() // keep loading until menu received
@@ -27,7 +30,6 @@ export default class Menu {
         .appendChild(__('ul'))
           .$func(ul => {
             const children = []
-            let activePage = ''
             for(const name in this.menu){
               if(this.menu.hasOwnProperty(name)){
                 const path = this.menu[name]
@@ -47,38 +49,15 @@ export default class Menu {
                       .$onclick(onclick = [
                         async (event, memory, target, prop, receiver) => {
                           event.preventDefault()
-                          if(activePage !== name){
+                          if(this.activePage !== name){
                             this.loadingEl.show() // set loading
-                            const setInnerHTML = (activateJS = false) => {
-                              if (memory.title && memory.title !== this.titleEl.innerHTML) this.titleEl.$setInnerHTML(memory.title)
-                              if(memory.body && memory.body !== this.contentEl.innerHTML){
-                                activePage = name
-                                this.setActiveClass(children, activePage)
-                                if(/.*<script.*/mgi.test(memory.body)){
-                                  //iframe
-                                  this.contentEl
-                                    .$setInnerHTML('')
-                                      .appendChild(__('iframe')
-                                      .$setSrc(path))
-                                      .$setWidth(screen.width)
-                                      .$setHeight(screen.height)
-                                      // TODO: Iframe & transitions
-                                }else{
-                                  this.baseEl.$setHref(path.replace(/(.*\/).*?\.[a-zA-Z]{4}$/, '$1'))
-                                  this.contentEl.$setInnerHTML(memory.body)
-                                  this.baseEl.$setHref('./')
-                                }
-                                //if (activateJS) this.activateJS(this.contentEl)
-                                this.loadingEl.hide()
-                              }
-                            }
-                            setInnerHTML() // already run it, to first load localStorage entries
+                            this.setInnerHTML(name, path, children, memory) // already run it, to first load localStorage entries
                             if(!memory.raw){ // only fetch once per session
                               memory.raw = await this.load(path, 'text')
                               if (memory.raw && memory.raw.length) __(this).$wwRegex((newMemory) => {
                                 if(newMemory){
                                   memory = Object.assign(memory, newMemory)
-                                  setInnerHTML(true) // get new results
+                                  this.setInnerHTML(name, path, children, memory) // get new results
                                 }else{
                                   // at regex error
                                   if(onclick){
@@ -107,8 +86,8 @@ export default class Menu {
         // next menu css here!
     }
   }
-  setActiveClass(children = [], activePage = ''){
-    children.forEach(child => child.$getClassList((receiver, prop, classList) => classList[child.innerText === activePage ? 'add' : 'remove']('active')))
+  setActiveClass(children = []){
+    children.forEach(child => child.$getClassList((receiver, prop, classList) => classList[child.innerText === this.activePage ? 'add' : 'remove']('active')))
   }
   async load(path, parse = 'json'){
     try {
@@ -134,17 +113,53 @@ export default class Menu {
       return null
     }
   }
-  activateJS(el){
-    Array.from(el.getElementsByTagName('script')).forEach(script => {
-      if(script.innerHTML){
-        eval(script.innerHTML)
-      }else if(script.src){
-        const newScript = document.createElement('script')
-        newScript.src = script.src
-        script.remove()
-        el.appendChild(newScript)
-        console.log(this.baseEl.href)
+  setInnerHTML(name, path, children, memory){
+    if (memory.title && memory.title !== this.titleEl.innerHTML) this.titleEl.$setInnerHTML(memory.title)
+    if(memory.body && memory.body !== this.contentEl.innerHTML){
+      this.activePage = name
+      this.setActiveClass(children)
+      if(/.*<script.*/mgi.test(memory.body)){
+        //iframe
+        const css = `border: 0;
+                     overflow: hidden;
+                     width: 100%;`
+        this.contentEl
+          .$setInnerHTML('')
+          .appendChild(__('iframe'))
+            .$setSrc(path)
+            .$_setAttribute('seamless', true)
+            .$_setAttribute('scrolling', 'no')
+            .$onload((event, memory, target, prop, receiver)  => {
+                const iframeDoc = receiver.contentDocument ? receiver.contentDocument : receiver.contentWindow.document
+                const getHeight = () => Math.max(iframeDoc.body.scrollHeight, iframeDoc.body.offsetHeight, iframeDoc.documentElement.clientHeight, iframeDoc.documentElement.scrollHeight, iframeDoc.documentElement.offsetHeight)
+                let height = 0
+                let counter = 0
+                const checks = 15 // setting iframes css does also change the height, so iterate couple times until final height
+                const interval = setInterval(() => {
+                  if(height !== (height = getHeight())){
+                    if(counter === checks){
+                      // TODO: transtion (here fade out)
+                      console.log('iframe height', height);
+                      clearInterval(interval)
+                    }
+                    receiver.$css(`{
+                      ${css}
+                      height: ${height + 4}px;
+                    }`)
+                    counter++
+                  }
+                }, 1)
+            })
+            .$css(`{
+              ${css}
+              height: 100%;
+            }`)
+      }else{
+        this.baseEl.$setHref(path.replace(/(.*\/).*?\.[a-zA-Z]{4}$/, '$1'))
+        this.contentEl.$setInnerHTML(memory.body)
+        this.baseEl.$setHref('./')
       }
-    })
+      this.loadingEl.hide()
+    }
   }
 }

@@ -2,6 +2,7 @@
 
 export default class Loading {
   constructor (head) {
+    this.name = 'loading'
     this.setAnimation(head)
     return this.html(__('div'))
   }
@@ -25,9 +26,10 @@ export default class Loading {
   }
   html(el){
     return el
-      .$setId('loading')
+      .$setId(this.name)
       .$setInnerHTML('<span>.</span><span>.</span><span>.</span>')
       .$css([
+        `{grid-area: ${this.name};}`,
         ` span{
           animation-name: blink;
           animation-duration: 1.4s;
