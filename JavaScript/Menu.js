@@ -37,21 +37,24 @@ export default class Menu {
                 })
                 memory.$lStoreAdd('title', `Menu${name}${path}`)
                 memory.$lStoreAdd('body', `Menu${name}${path}`)
+                let onclick = null
                 children.push(
                   __('li')
-                    .$setInnerHTML(name)
-                    .$onclick(
-                      [
+                    .appendChild(__('a'))
+                      .$setInnerHTML(name)
+                      .$setHref(path)
+                      .$onclick(onclick = [
                         async (event, memory, target, prop, receiver) => {
+                          event.preventDefault()
                           if(activePage !== name){
-                            activePage = name
-                            this.setActiveClass(children, activePage)
                             this.loadingEl.show() // set loading
                             const setInnerHTML = () => {
                               if (memory.title && memory.title !== this.titleEl.innerHTML) this.titleEl.$setInnerHTML(memory.title)
                               if(memory.body && memory.body !== this.contentEl.innerHTML){
-                                this.loadingEl.hide()
+                                activePage = name
+                                this.setActiveClass(children, activePage)
                                 this.contentEl.$setInnerHTML(memory.body)
+                                this.loadingEl.hide()
                               }
                             }
                             setInnerHTML() // already run it, to first load localStorage entries
@@ -63,9 +66,14 @@ export default class Menu {
                                   setInnerHTML() // get new results
                                 }else{
                                   // at regex error
-                                  receiver.remove()
-                                  children.splice(children.indexOf(receiver), 1)
-                                  if (children[0]) children[0].click() // activate first
+                                  if(onclick){
+                                    receiver.$onclick(onclick, 'remove')
+                                    receiver.click()
+                                  }else if(children[0]) {
+                                    receiver.parentElement.remove()
+                                    children.splice(children.indexOf(receiver), 1)
+                                    children[0].getElementsByTagName('a')[0].click() // activate first
+                                  }
                                 }
                               }, memory.raw, path)
                             }
@@ -73,18 +81,19 @@ export default class Menu {
                         },
                         memory
                       ])
+                    .parentElement
                 )
               }
             }
             ul.$appendChildren(children)
-            if (children[0]) children[0].click() // activate first
+            if (children[0]) children[0].getElementsByTagName('a')[0].click() // activate first
           })
-        .parent
+        .parentElement
         // next menu css here!
     }
   }
   setActiveClass(children = [], activePage = ''){
-    children.forEach(child => child.$getClassList((receiver, prop, classList) => classList[child.innerHTML === activePage ? 'add' : 'remove']('active')))
+    children.forEach(child => child.$getClassList((receiver, prop, classList) => classList[child.innerText === activePage ? 'add' : 'remove']('active')))
   }
   async load(path, parse = 'json'){
     try {
