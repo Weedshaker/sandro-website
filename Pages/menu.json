@@ -1,5 +1,5 @@
 {
-    "home": "./Pages/home/home.html",
     "controls": "./Pages/controls.html",
+    "home": "./Pages/home/home.html",
     "contact" : "./Pages/contact.html"
 }
