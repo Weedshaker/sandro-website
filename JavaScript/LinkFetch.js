@@ -3,7 +3,7 @@ import { InitBasic } from '../proxifyjs/JavaScript/Classes/Controller/InitBasic.
 
 const __ = new ProxifyHook(InitBasic).get()
 
-customElements.define('menu-router', class MenuRouter extends HTMLElement {
+customElements.define('link-fetch', class LinkFetch extends HTMLElement {
   constructor() {
     super()
 
@@ -11,18 +11,21 @@ customElements.define('menu-router', class MenuRouter extends HTMLElement {
       __(this.childNodes),
       __(document.getElementsByTagName('base')[0]),
       __(document.getElementsByTagName('title')[0]),
-      __(document.getElementById(this.getAttribute('contentId') || 'content'))
+      __(document.getElementById(this.getAttribute('fetchToId') || 'container'))
     )
     const shadow = this.getAttribute('shadow') || 'open' // possible: "false", "open", "closed"
     if (shadow !== 'false') __(this.attachShadow({ mode: shadow })).$appendChildren(Array.from(this.childNodes))
   }
   addOnClick(childNodes, baseEl, titleEl, contentEl){
+    if (baseEl) baseEl.setAttribute('orig_href', baseEl.getAttribute('href'))
     Array.from(childNodes).forEach(childNode => {
       let href = ''
       if(typeof childNode.getAttribute === 'function' && (href = childNode.getAttribute('href')) && href.length !== 0){
         childNode.$onclick([
           async (event, memory, target, prop, receiver) => {
             event.preventDefault()
+            // reset the base url to the original parameter
+            if (baseEl) baseEl.setAttribute('href', baseEl.getAttribute('orig_href'))
             if (!memory.raw) memory.raw = await this.load(href)
             if(memory.raw){
               if (!memory.base) memory.base = await __(this).$wwGetBase(null, memory.raw, href)
@@ -30,9 +33,10 @@ customElements.define('menu-router', class MenuRouter extends HTMLElement {
               if (!memory.title) memory.title = await __(this).$wwGetTitle(null, memory.raw, href)
               if(memory.title){
                 if (titleEl) titleEl.$setInnerText(memory.title)
-                if(contentEl){
-                  contentEl.$setInnerHTML(memory.raw)
-                  contentEl.setAttribute('content', memory.title) // trigger life cycle event
+                const individuelContentEl = document.getElementById(childNode.getAttribute('fetchToId')) && __(document.getElementById(childNode.getAttribute('fetchToId'))) || contentEl
+                if(individuelContentEl){
+                  individuelContentEl.$setInnerHTML(memory.raw)
+                  individuelContentEl.setAttribute('content', memory.title) // trigger life cycle event
                 }
               }
             }
