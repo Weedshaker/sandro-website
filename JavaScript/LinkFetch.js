@@ -3,52 +3,41 @@ import { InitBasic } from '../proxifyjs/JavaScript/Classes/Controller/InitBasic.
 
 const __ = new ProxifyHook(InitBasic).get()
 
+// Attributes:
+// ---applies to root only---
+// shadow:string = "false", "open", "closed" (default "open")
+// ---applies to href el only---
+// href:string = fetchPath
+// ---applies to both with prio href el---
+// parse[string] = "text", "json", ... (default "text")
+// fetchToId = id of the content container to push text to as "content" attribute
 customElements.define('link-fetch', class LinkFetch extends HTMLElement {
   constructor() {
     super()
 
-    this.addOnClick(
-      __(this.childNodes),
-      __(document.getElementsByTagName('base')[0]),
-      __(document.getElementsByTagName('title')[0]),
-      __(document.getElementById(this.getAttribute('fetchToId') || 'container'))
-    )
-    const shadow = this.getAttribute('shadow') || 'open' // possible: "false", "open", "closed"
+    this.addOnClick(__(this.childNodes))
+    const shadow = this.getAttribute('shadow') || 'open'
     if (shadow !== 'false') __(this.attachShadow({ mode: shadow })).$appendChildren(Array.from(this.childNodes))
   }
-  addOnClick(childNodes, baseEl, titleEl, contentEl){
-    if (baseEl) baseEl.setAttribute('orig_href', baseEl.getAttribute('href'))
+  addOnClick(childNodes){
     Array.from(childNodes).forEach(childNode => {
       let href = ''
       if(typeof childNode.getAttribute === 'function' && (href = childNode.getAttribute('href')) && href.length !== 0){
         childNode.$onclick([
           async (event, memory, target, prop, receiver) => {
             event.preventDefault()
-            // reset the base url to the original parameter
-            if (baseEl) baseEl.setAttribute('href', baseEl.getAttribute('orig_href'))
-            if (!memory.raw) memory.raw = await this.load(href)
+            if (!memory.raw) memory.raw = await this.load(href, childNode.getAttribute('parse') || this.getAttribute('parse') || undefined)
             if(memory.raw){
-              if (!memory.base) memory.base = await __(this).$wwGetBase(null, memory.raw, href)
-              if (memory.base && baseEl) baseEl.setAttribute('href', memory.base)
-              if (!memory.title) memory.title = await __(this).$wwGetTitle(null, memory.raw, href)
-              if(memory.title){
-                if (titleEl) titleEl.$setInnerText(memory.title)
-                const individuelContentEl = document.getElementById(childNode.getAttribute('fetchToId')) && __(document.getElementById(childNode.getAttribute('fetchToId'))) || contentEl
-                if(individuelContentEl){
-                  individuelContentEl.$setInnerHTML(memory.raw)
-                  individuelContentEl.setAttribute('content', memory.title) // trigger life cycle event
-                }
-              }
+              const individuelContentEl = document.getElementById(childNode.getAttribute('fetchToId') || this.getAttribute('fetchToId') || 'container')
+              if (individuelContentEl) individuelContentEl.setAttribute('content', memory.raw) // trigger life cycle event
             }
           },
           {
-            raw: null,
-            base: null,
-            title: null
+            raw: null
           }
         ])
       }
-      this.addOnClick(childNode.childNodes, baseEl, titleEl, contentEl)
+      this.addOnClick(childNode.childNodes) // recursive
     })
   }
   async load(path, parse = 'text'){
@@ -57,22 +46,6 @@ customElements.define('link-fetch', class LinkFetch extends HTMLElement {
       return await response[parse]()
     } catch (e) {
       console.warn(`${path} could not be loaded: ${e.message}`)
-      return null
-    }
-  }
-  getBase(text, path = 'not specified') {
-    try {
-      return /.*<base.*?href="(.*?)".*?>/mgi.exec(text)[1]
-    } catch (e) {
-      console.warn(`Page at "${path}" could not be processed: ${e.message}. Change html to have base tag!`)
-      return null
-    }
-  }
-  getTitle(text, path = 'not specified'){
-    try {
-      return /.*<title>(.*?)<\/title>/mgi.exec(text)[1]
-    } catch (e) {
-      console.warn(`Page at "${path}" could not be processed: ${e.message}. Change html to have title tag!`)
       return null
     }
   }
