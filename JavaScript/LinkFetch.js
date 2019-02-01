@@ -1,7 +1,9 @@
 import { ProxifyHook } from '../proxifyjs/JavaScript/Classes/Helper/ProxifyHook.js'
-import { InitBasic } from '../proxifyjs/JavaScript/Classes/Controller/InitBasic.js'
+import { Proxify } from '../proxifyjs/JavaScript/Classes/Handler/Proxify.js'
+import { Html } from '../proxifyjs/JavaScript/Classes/Traps/Dom/Html.js'
+import { Events } from '../proxifyjs/JavaScript/Classes/Traps/Dom/Events.js'
 
-const __ = new ProxifyHook(InitBasic).get()
+const __ = new ProxifyHook(Events(Html(Proxify()))).get()
 
 // Attributes:
 // ---applies to root only---
