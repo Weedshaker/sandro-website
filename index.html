@@ -10,6 +10,7 @@
 </head>
 <body>
     <script rel="modulepreload" type="module">
+        /*
         import { ProxifyHook } from './proxifyjs/JavaScript/Classes/Helper/ProxifyHook.js'
         import { InitBasic } from './proxifyjs/JavaScript/Classes/Controller/InitBasic.js'
         // Menu
@@ -56,13 +57,20 @@
             }
         }
         new Index()
+        */
     </script>
     <script rel="modulepreload" type="module">
-        import WordCount from './JavaScript/WordCount.js'
-
-        customElements.define('word-count', WordCount, { extends: 'p' });
+        import './JavaScript/MenuRouter.js'
+        import './JavaScript/ContentContainer.js'
     </script>
-    <word-count>Hello<a>bahhh</a></word-count>
+    <menu-router contentId="content">
+        <ul>
+            <li><a href="./Pages/controls.html">controls</a></li>
+            <li><a href="./Pages/contact.html">contact</a></li>
+            <li><a href="./Pages/home/home.html">home</a></li>
+        </ul>
+    </menu-router>
+    <content-container id="content"></content-container>
     <script>
             (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
