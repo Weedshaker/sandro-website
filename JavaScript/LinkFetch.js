@@ -17,9 +17,15 @@ customElements.define('link-fetch', class LinkFetch extends HTMLElement {
   constructor() {
     super()
 
-    this.addOnClick(__(this.childNodes))
     const shadow = this.getAttribute('shadow') || 'open'
-    if (shadow !== 'false') __(this.attachShadow({ mode: shadow })).$appendChildren(Array.from(this.childNodes))
+    if (shadow !== 'false') this.root = __(this.attachShadow({ mode: shadow })).$appendChildren(Array.from(this.childNodes))
+  }
+  connectedCallback(){
+    if(!this.initialized){
+      const container = this.root || __(this)
+      this.addOnClick(__(container.childNodes))
+      this.initialized = true
+    }
   }
   addOnClick(childNodes){
     Array.from(childNodes).forEach(childNode => {

@@ -14,7 +14,7 @@ customElements.define('shadow-container', class ShadowContainer extends HTMLElem
   constructor() {
     super()
     
-    const shadow = this.getAttribute('shadow') || 'open' // possible: "false", "open", "closed"
+    const shadow = this.getAttribute('shadow') || 'open'
     if (shadow !== 'false') this.root = __(this.attachShadow({ mode: shadow }))
 
     this.titleEl = __(document.getElementsByTagName('title')[0])
