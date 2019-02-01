@@ -22,13 +22,14 @@ customElements.define('shadow-container', class ShadowContainer extends HTMLElem
     if (this.baseEl) this.baseEl.setAttribute('orig_href', this.baseEl.getAttribute('href'))
   }
   async attributeChangedCallback(name, oldValue, newValue) {
-    if(name === 'content'){
+    if(name === 'content' && newValue){
       const container = this.root || __(this)
       if(this.baseEl){
         const newBaseElHref = await __(this).$wwGetBase(null, newValue)
         if (newBaseElHref) this.baseEl.setAttribute('href', newBaseElHref)
       }
       container.$setInnerHTML(newValue)
+      this.setAttribute(name, '')
       // TODO: make JavaScript from newValue work!
       if (this.baseEl) this.baseEl.setAttribute('href', this.baseEl.getAttribute('orig_href')) // reset the base url to the original parameter
       if(this.titleEl){
