@@ -10,58 +10,8 @@
 </head>
 <body>
     <script rel="modulepreload" type="module">
-        /*
-        import { ProxifyHook } from './proxifyjs/JavaScript/Classes/Helper/ProxifyHook.js'
-        import { InitBasic } from './proxifyjs/JavaScript/Classes/Controller/InitBasic.js'
-        // Menu
-        import AnchorMenu from './proxifyjs/Docs/AnchorMenu.js'
-        import Scroll from './proxifyjs/Docs/Scroll.js'
-        import Menu from './JavaScript/Menu.js'
-        // HTML El's
-        import Content from './JavaScript/Content.js'
-        import Loading from './JavaScript/Loading.js'
-
-        class Index {
-            constructor() {
-                this.makeGlobal('__', new ProxifyHook(InitBasic).get())
-                this.headEl = __(document.getElementsByTagName('head')[0])
-                this.baseEl = __(document.getElementsByTagName('base')[0])
-                this.titleEl = __(document.getElementsByTagName('title')[0])
-                this.bodyEl = __(document.getElementsByTagName('body')[0])
-                this.contentEl = new Content
-                this.loadingEl = new Loading(this.headEl)
-                this.setup(this.bodyEl)
-            }
-            setup(body){
-                body
-                    .$appendChildren([
-                        new Menu(this.contentEl, this.titleEl, this.baseEl, this.loadingEl),
-                        // TODO: Add LanguageMenu to set localStorage.setItem('language', 'de'|'ja'|...) and location.reload (Menu.js->load has support)
-                        this.loadingEl,
-                        this.contentEl
-                    ])
-                    // above renders out, so that AnchorMenu can grab body.h2 tags
-                    .$_insertBefore(new AnchorMenu(body), this.loadingEl)
-                    .$css(`{
-                        display: grid;
-                        grid-template-areas: "menu menu"
-                                             "loading loading"
-                                             "content content";
-                        grid-template-columns: 1fr 2fr;
-                        grid-template-rows: 2fr 1fr minmax(2fr, auto);
-                    }`)
-                new Scroll()
-            }
-            makeGlobal(name, obj) {
-                return window[name] = obj
-            }
-        }
-        new Index()
-        */
-    </script>
-    <script rel="modulepreload" type="module">
-        import './JavaScript/LinkFetch.js'
-        import './JavaScript/ShadowContainer.js'
+        import './web-components/src/LinkFetch.js'
+        import './web-components/src/ShadowContainer.js'
     </script>
     <link-fetch fetchToId="container" autoLoad="true">
         <ul>
