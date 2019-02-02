@@ -10,6 +10,13 @@ const __ = new ProxifyHook(Events(Html(WebWorkers(Chain(Proxify()))))).get()
 // Attributes:
 // ---applies to root only---
 // shadow:string = "false", "open", "closed" (default "open")
+// iframeWidth:string (default 100%)
+// iframeHeight:string (default 100%)
+// iframeSeamless:boolean (default true)
+// iframeScrolling:string (default "no")
+// iframeBorder:string (default 0)
+// iframeOverflow:string (default "hidden")
+// changeTitle:boolean (default true)
 customElements.define('shadow-container', class ShadowContainer extends HTMLElement {
   static get observedAttributes() { return ['content'] }
   constructor() {
@@ -21,6 +28,8 @@ customElements.define('shadow-container', class ShadowContainer extends HTMLElem
     this.titleEl = __(document.getElementsByTagName('title')[0])
     this.baseEl = __(document.getElementsByTagName('base')[0])
     if (this.baseEl) this.baseEl.setAttribute('orig_href', this.baseEl.getAttribute('href'))
+
+    this.iframeSize = [this.getAttribute('iframeWidth'), this.getAttribute('iframeHeight')]
   }
   async attributeChangedCallback(name, oldValue, newValue) {
     if(name === 'content' && newValue){
@@ -32,20 +41,28 @@ customElements.define('shadow-container', class ShadowContainer extends HTMLElem
           .$setInnerHTML('')
           .appendChild(__('iframe'))
             .$setSrc(href)
-            .$_setAttribute('seamless', true)
-            .$_setAttribute('scrolling', 'no')
+            .$_setAttribute('seamless', this.getAttribute('iframeSeamless') && this.getAttribute('iframeSeamless') === 'true' || true)
+            .$_setAttribute('scrolling', this.getAttribute('iframeScrolling') || 'no')
             .$getStyle((receiver, prop, style) => {
               style
-                .$setBorder(0)
-                .$setHeight('100%')
-                .$setOverflow('hidden')
-                .$setWidth('100%')
+                .$setBorder(this.getAttribute('iframeBorder') || 0)
+                .$setHeight(this.iframeSize[1] || '100%')
+                .$setOverflow(this.getAttribute('iframeOverflow') || 'hidden')
+                .$setWidth(this.iframeSize[0] || '100%')
             })
-            .$onload((event, memory, target, prop, receiver)  => {
-              const iframeDoc = receiver.contentDocument ? receiver.contentDocument : receiver.contentWindow.document
-              const getHeight = () => Math.max(iframeDoc.body.scrollHeight, iframeDoc.body.offsetHeight, iframeDoc.documentElement.clientHeight, iframeDoc.documentElement.scrollHeight, iframeDoc.documentElement.offsetHeight)
-              receiver.$getStyle((receiver, prop, style) => {
-                style.$setMinHeight(`${getHeight()}px`)
+            .$func((receiver) => {
+              if (!this.iframeSize[1]) receiver.$onload((event, memory, target, prop, receiver)  => {
+                const iframeDoc = receiver.contentDocument ? receiver.contentDocument : receiver.contentWindow.document
+                const getHeight = () => Math.max(iframeDoc.body.scrollHeight, iframeDoc.body.offsetHeight, iframeDoc.documentElement.clientHeight, iframeDoc.documentElement.scrollHeight, iframeDoc.documentElement.offsetHeight)
+                const interval = setInterval(() => {
+                  receiver.$getStyle((receiver, prop, style) => {
+                    if(style.$getMinHeight() !== `${getHeight()}px`){
+                      style.$setMinHeight(`${getHeight()}px`)
+                    }else{
+                      clearInterval(interval)
+                    }
+                  })
+                }, 100)
               })
             })
       // load it straight into the shadow dom
@@ -58,7 +75,7 @@ customElements.define('shadow-container', class ShadowContainer extends HTMLElem
         if (this.baseEl) this.baseEl.setAttribute('href', this.baseEl.getAttribute('orig_href')) // reset the base url to the original parameter
       }
       this.setAttribute(name, '') // clear the attribute after applying it to innerHTML
-      if(this.titleEl){
+      if(this.titleEl && this.getAttribute('changeTitle') !== 'false'){
         const newTitleEl = container.getElementsByTagName('title')[0] || await __(this).$wwGetTitle(null, html)
         if (newTitleEl) this.titleEl.$setInnerText(newTitleEl.innerText || newTitleEl)
       }
