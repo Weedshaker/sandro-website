@@ -63,14 +63,14 @@
         import './JavaScript/LinkFetch.js'
         import './JavaScript/ShadowContainer.js'
     </script>
-    <link-fetch fetchToId="container">
+    <link-fetch fetchToId="container" autoLoad="true">
         <ul>
             <li><a href="./Pages/controls.html">controls</a></li>
-            <li><a href="./Pages/contact.html">contact</a></li>
+            <li><a href="./Pages/contact.html" autoLoad="false">contact</a></li>
             <li><a href="./Pages/home/home.html" fetchToId="container2">home</a></li>
         </ul>
     </link-fetch>
-    <shadow-container id="container" shadow="closed"></shadow-container>
+    <shadow-container id="container"></shadow-container>
     <shadow-container id="container2"></shadow-container>
     <script>
             (function (i, s, o, g, r, a, m) {

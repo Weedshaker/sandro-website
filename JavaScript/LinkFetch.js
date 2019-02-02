@@ -11,8 +11,9 @@ const __ = new ProxifyHook(Events(Html(Proxify()))).get()
 // ---applies to href el only---
 // href:string = fetchPath
 // ---applies to both with prio href el---
-// parse[string] = "text", "json", ... (default "text")
-// fetchToId = id of the content container to push text to as "content" attribute
+// parse:string = "text", "json", ... (default "text")
+// fetchToId:string = id of the content container to push text to as "content" attribute
+// autoLoad:boolean = (default "false")
 customElements.define('link-fetch', class LinkFetch extends HTMLElement {
   constructor() {
     super()
@@ -37,13 +38,16 @@ customElements.define('link-fetch', class LinkFetch extends HTMLElement {
             if (!memory.raw) memory.raw = await this.load(href, childNode.getAttribute('parse') || this.getAttribute('parse') || undefined)
             if(memory.raw){
               const individuelContentEl = document.getElementById(childNode.getAttribute('fetchToId') || this.getAttribute('fetchToId') || 'container')
-              if (individuelContentEl) individuelContentEl.setAttribute('content', memory.raw) // trigger life cycle event
+              if (individuelContentEl) individuelContentEl.setAttribute('content', `${memory.raw}|###|${href}`) // trigger life cycle event
             }
           },
           {
             raw: null
           }
         ])
+        if ((childNode.getAttribute('autoLoad') && childNode.getAttribute('autoLoad') === 'true') || (!childNode.getAttribute('autoLoad') && this.getAttribute('autoLoad') && this.getAttribute('autoLoad') === 'true')){
+          childNode.click()
+        }
       }
       this.addOnClick(childNode.childNodes) // recursive
     })
