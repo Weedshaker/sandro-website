@@ -16,15 +16,14 @@
         customElements.define('link-fetch', LinkFetch)
         customElements.define('shadow-container', ShadowContainer)
     </script>
-    <link-fetch fetchToId="container" autoLoad="true" lazy="true">
+    <link-fetch fetchToId="container" lazy="true">
         <ul>
             <li><a href="./Pages/controls.html">controls</a></li>
-            <li><a href="./Pages/contact.html" autoLoad="false">contact</a></li>
-            <li><a href="./Pages/home/home.html" fetchToId="container2">home</a></li>
+            <li><a href="./Pages/contact.html" autoLoad="true">contact</a></li>
+            <li><a href="./Pages/home/home.html">home</a></li>
         </ul>
     </link-fetch>
-    <shadow-container id="container"></shadow-container>
-    <shadow-container id="container2"></shadow-container>
+    <shadow-container id="container" history="true"></shadow-container>
     <script>
             (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
