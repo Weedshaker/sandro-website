@@ -10,10 +10,13 @@
 </head>
 <body>
     <script rel="modulepreload" type="module">
-        import './web-components/src/LinkFetch.js'
-        import './web-components/src/ShadowContainer.js'
+        import LinkFetch from './web-components/src/LinkFetch.js'
+        import ShadowContainer from './web-components/src/ShadowContainer.js'
+
+        customElements.define('link-fetch', LinkFetch)
+        customElements.define('shadow-container', ShadowContainer)
     </script>
-    <link-fetch fetchToId="container" autoLoad="true">
+    <link-fetch fetchToId="container" autoLoad="true" lazy="true">
         <ul>
             <li><a href="./Pages/controls.html">controls</a></li>
             <li><a href="./Pages/contact.html" autoLoad="false">contact</a></li>
