@@ -10,20 +10,20 @@
 </head>
 <body>
     <script rel="modulepreload" type="module">
-        import LinkFetch from './web-components/src/LinkFetch.js'
-        import ShadowContainer from './web-components/src/ShadowContainer.js'
+        import HrefFetch from './web-components/fetch/HrefFetch.js'
+        import FetchContainer from './web-components/fetch/FetchContainer.js'
 
-        customElements.define('link-fetch', LinkFetch)
-        customElements.define('shadow-container', ShadowContainer)
+        customElements.define('href-fetch', HrefFetch)
+        customElements.define('fetch-container', FetchContainer)
     </script>
-    <link-fetch fetchToId="container" lazy="true">
+    <href-fetch fetchToId="container" lazy="true">
         <ul>
             <li><a href="./Pages/controls.html">controls</a></li>
             <li><a href="./Pages/contact.html" autoLoad="true">contact</a></li>
             <li><a href="./Pages/home/home.html">home</a></li>
         </ul>
-    </link-fetch>
-    <shadow-container id="container" history="true"></shadow-container>
+    </href-fetch>
+    <fetch-container id="container" history="true"></fetch-container>
     <script>
             (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
