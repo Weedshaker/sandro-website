@@ -5,7 +5,12 @@
     <title>Shoga9Team - Contact</title>
 </head>
 <body>
+    <script rel="preload" type="module">
+        import FetchContainer from '../web-components/fetch/FetchContainer.js'
+
+        customElements.define('fetch-container', FetchContainer)
+    </script>
     Hello Contact! Here we go...
-    <fetch-container id="containerBah" href="./controls.html" />
+    <fetch-container id="containerBah" useIframe="false" href="./controls.html" />
 </body>
 </html>
