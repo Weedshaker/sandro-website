@@ -4,7 +4,6 @@ class MasterServiceWorker {
 		this.version = 'v1'
 		this.precache = [
 			'./',
-			'./index.html',
 			'./favicon.gif'
 		]
 		this.doNotIntercept = ['analytics.js']
@@ -31,15 +30,21 @@ class MasterServiceWorker {
 							if(response){
 								didResolve = true
 								resolve(response)
-							}else if (counter === 2){
+							}else if (counter >= 2){ // two which race, when none resulted in any useful response, reject
 								reject(response)
 							}
 						}
-						return response || new Error('no response')
+						return response || new Error(`No response for ${event.request.url}`)
 					}
 					// race fetch vs. cache to resolve
-					this.getFetch(event).then(response => doResolve(response)).catch(error => console.info(`Can't fetch ${event.request.url}`, error)) // start fetching and caching
-					this.getCache(event).then(response => doResolve(response)).catch(error => console.info(`Can't get cache ${event.request.url}`, error)) // grab cache
+					this.getFetch(event).then(response => doResolve(response)).catch(error => { // start fetching and caching
+						console.info(`Can't fetch ${event.request.url}`, error)
+						return doResolve(null)
+					})
+					this.getCache(event).then(response => doResolve(response)).catch(error => { // grab cache
+						console.info(`Can't get cache ${event.request.url}`, error)
+						return doResolve(null)
+					})
 				})
 				: fetch(event.request)
 		))
