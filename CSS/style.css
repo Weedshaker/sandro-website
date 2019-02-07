@@ -18,6 +18,7 @@ header, footer {
     background-color: black;
     color: white;
 }
+/* get outside access to a tags */
 header fetch-href a, header fetch-href a:visited {
     color: lightgray;
 }
