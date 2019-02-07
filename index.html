@@ -13,7 +13,7 @@
         import FetchHref from './web-components/fetch/FetchHref.js'
         import FetchContainer from './web-components/fetch/FetchContainer.js'
 
-        new ServiceWorker().run()
+        if (!document.location.host.includes('localhost')) new ServiceWorker().run()
         customElements.define('fetch-href', FetchHref)
         customElements.define('fetch-container', FetchContainer)
     </script>
