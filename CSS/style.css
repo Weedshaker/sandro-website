@@ -1,0 +1,31 @@
+*{
+    box-sizing: border-box;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+}
+#page {
+    display: grid;
+    grid-template-areas: "header"
+                         "main"
+                         "footer";
+    grid-template-rows: 100px 1fr 100px;
+    grid-template-columns: 1fr;
+    height: 100vh;
+    width: 100vw;
+}
+header, footer {
+    background-color: black;
+    color: white;
+}
+header fetch-href a, header fetch-href a:visited {
+    color: lightgray;
+}
+main {
+    background-color: white;
+    color: black;
+    overflow-y: scroll;
+}
+fetch-href {
+    font-weight: bold;
+}

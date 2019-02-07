@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <base href="./">
-    <link rel="shortcut icon" href="./favicon.gif" type="image/x-icon" />
+    <link rel="shortcut icon" href="./favicon.gif" type="image/x-icon">
     <link rel="manifest" href="./manifest.json">
+    <link rel="stylesheet" href="./CSS/style.css">
     <title>Shoga9Team</title>
 </head>
 <body>
@@ -12,19 +13,30 @@
         import ServiceWorker from './JavaScript/ServiceWorker.js'
         import FetchHref from './web-components/fetch/FetchHref.js'
         import FetchContainer from './web-components/fetch/FetchContainer.js'
+        import NowYear from './web-components/time/NowYear.js'
 
         if (!document.location.host.includes('localhost')) new ServiceWorker().run()
         customElements.define('fetch-href', FetchHref)
         customElements.define('fetch-container', FetchContainer)
+        customElements.define('now-year', NowYear)
     </script>
-    <fetch-href fetchToId="container" lazy="true">
-        <ul>
-            <li><a href="./Pages/controls.html" autoLoad="true">controls</a></li>
-            <li><a href="./Pages/contact.html">contact</a></li>
-            <li><a href="./Pages/home/home.html">home</a></li>
-        </ul>
-    </fetch-href>
-    <fetch-container id="container" history="true"></fetch-container>
+    <section id="page">
+        <header>
+            <fetch-href fetchToId="container" lazy="true">
+                <nav>
+                    <ul>
+                        <li><a href="./Pages/controls.html" autoLoad="true">controls</a></li>
+                        <li><a href="./Pages/contact.html">contact</a></li>
+                        <li><a href="./Pages/home/home.html">home</a></li>
+                    </ul>
+                </nav>
+            </fetch-href>
+        </header>
+        <main>
+            <fetch-container id="container" history="true"></fetch-container>
+        </main>
+        <footer>© <now-year>2019</now-year> ShogaIX Productions. All rights reserved.</footer>
+    </section>
     <script>
         /*
             (function (i, s, o, g, r, a, m) {
