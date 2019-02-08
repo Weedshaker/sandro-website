@@ -4,6 +4,16 @@
     padding: 0;
     margin: 0;
 }
+a {
+    color: white;
+    text-decoration: none;
+}
+a:visited {
+    color: lightgray;
+}
+a.active, a:hover {
+    color: red;
+}
 #page {
     display: grid;
     grid-template-areas: "header"
@@ -18,15 +28,8 @@ header, footer {
     background-color: black;
     color: white;
 }
-/* get outside access to a tags */
-header fetch-href a, header fetch-href a:visited {
-    color: lightgray;
-}
 main {
     background-color: white;
     color: black;
     overflow-y: scroll;
-}
-fetch-href {
-    font-weight: bold;
 }
