@@ -1,32 +1,3 @@
-@font-face {
-    font-family: 'cp_revengeregular';
-    src: url('cp_revenge-webfont.woff2') format('woff2'),
-         url('cp_revenge-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-*{
-    --color-font1: white;
-    --color-font2: black;
-    --color-font3: lightgray;
-    --color-font4: red;
-    box-sizing: border-box;
-    font-family: 'cp_revengeregular', Arial, Helvetica, sans-serif;
-    font-size: 16px;
-    margin: 0;
-    overflow: hidden;
-    padding: 0;
-}
-a {
-    color: var(--color-font1);
-    text-decoration: none;
-}
-a:visited {
-    color: var(--color-font3);
-}
-a.active, a:hover {
-    color: var(--color-font4);
-}
 #page {
     display: grid;
     grid-template-areas: "header"
@@ -41,16 +12,30 @@ header, footer {
     background-color: var(--color-font2);
     color: var(--color-font1);
 }
+header {
+    align-items: end;
+    display: flex;
+    justify-content: space-between;
+}
+header fetch-href {
+    margin: 3px;
+}
+header fetch-container {
+    margin-left: 3px;
+}
 footer, main {
-    align-items: center;
     display: flex;
     justify-content: center;
 }
+footer {
+    align-items: start;
+}
 footer * {
     font-size: 8px;
+    margin-top: 3px;
 }
 main {
     background-color: var(--color-font1);
     color: var(--color-font2);
-    overflow-y: scroll;
+    padding: 3px;
 }

@@ -1,0 +1,29 @@
+@font-face {
+    font-family: 'cp_revengeregular';
+    src: url('cp_revenge-webfont.woff2') format('woff2'),
+         url('cp_revenge-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+*{
+    --color-font1: white;
+    --color-font2: black;
+    --color-font3: lightgray;
+    --color-font4: red;
+    box-sizing: border-box;
+    font-family: 'cp_revengeregular', Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+}
+a {
+    color: var(--color-font1);
+    text-decoration: none;
+}
+a:visited {
+    color: var(--color-font3);
+}
+a.active, a:hover {
+    color: var(--color-font4);
+}

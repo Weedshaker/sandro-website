@@ -6,6 +6,7 @@
     <link rel="shortcut icon" href="./favicon.gif" type="image/x-icon">
     <link rel="manifest" href="./manifest.json">
     <link rel="stylesheet" href="./CSS/style.css">
+    <link rel="stylesheet" href="./CSS/reset.css">
     <title>Shoga9Team</title>
 </head>
 <body>
@@ -22,20 +23,21 @@
     </script>
     <section id="page">
         <header>
+            <fetch-container href="./Pages/logo/home.html" iframeHeight="100%" lazy="true"></fetch-container>
             <fetch-href fetchToId="container" lazy="true" setHash="true">
-                <link rel="stylesheet" href="./CSS/style.css">
+                <link rel="stylesheet" href="./CSS/reset.css">
                 <nav>
                     <ul>
                         <li><a href="./Pages/controls.html" autoLoad="true">controls</a></li>
                         <li><a href="./Pages/contact.html">contact</a></li>
-                        <li><a href="./Pages/home/home.html">home</a></li>
+                        <li><a href="./Pages/twitter.html">twitter</a></li>
                     </ul>
                 </nav>
             </fetch-href>
         </header>
         <main>
-            <fetch-container id="container" history="true">
-                <link rel="stylesheet" href="./CSS/style.css">
+            <fetch-container id="container" history="true" changeTitle="true" lazy="true" iframeHeight="100%">
+                <link rel="stylesheet" href="./CSS/reset.css">
             </fetch-container>
         </main>
         <footer><p><now-year>2014</now-year> ShogaIX Productions. All rights reserved.</p></footer>
