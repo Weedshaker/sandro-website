@@ -1,9 +1,13 @@
+html{
+    height: 100%;
+}
 body{
     margin: 0;
     background-color: black;
     color: white;
     overflow-x: hidden;
     box-sizing: border-box;
+    height: 100%;
 }
 a{
     color: white;
@@ -24,13 +28,4 @@ a{
     display: inline-block;
     height: 100%;
     vertical-align: middle;
-    padding-top: 3px;
-}
-hr{
-    margin: 0;
-    padding: 0;
-    border: 1px solid black;
-    background-color: black;
-    height: 0;
-    margin-bottom: 20px;
 }
