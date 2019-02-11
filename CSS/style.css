@@ -18,9 +18,11 @@ header {
     justify-content: space-between;
 }
 header fetch-href {
+    flex: 0 0 auto;
     margin: 3px;
 }
 header fetch-container {
+    flex: 0 1 auto;
     margin-left: 3px;
 }
 footer, main {
@@ -37,5 +39,4 @@ footer * {
 main {
     background-color: var(--color-font1);
     color: var(--color-font2);
-    padding: 3px;
 }
