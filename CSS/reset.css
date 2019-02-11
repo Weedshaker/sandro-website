@@ -12,10 +12,14 @@
     --color-font4: red;
     box-sizing: border-box;
     font-family: 'cp_revengeregular', Arial, Helvetica, sans-serif;
-    font-size: 16px;
+    font-size: 3vmin;
     margin: 0;
-    overflow: hidden;
     padding: 0;
+}
+body, html {
+    height:100%;
+    overflow: hidden;
+    width:100%;
 }
 a {
     color: var(--color-font1);

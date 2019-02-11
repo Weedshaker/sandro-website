@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3.0, minimum-scale=1">
     <base href="./">
     <link rel="shortcut icon" href="./favicon.gif" type="image/x-icon">
     <link rel="manifest" href="./manifest.json">
@@ -16,7 +17,7 @@
         import FetchContainer from './web-components/fetch/FetchContainer.js'
         import NowYear from './web-components/time/NowYear.js'
 
-        if (!document.location.host.includes('localhost')) new ServiceWorker().run()
+        if (!document.location.host.includes('localhost') && !document.location.host.includes('192.168.')) new ServiceWorker().run()
         customElements.define('fetch-href', FetchHref)
         customElements.define('fetch-container', FetchContainer)
         customElements.define('now-year', NowYear)
@@ -35,7 +36,7 @@
             </fetch-href>
         </header>
         <main>
-            <fetch-container id="container" history="true" changeTitle="true" lazy="true" iframeHeight="100%" iframeWidth="100vw">
+            <fetch-container id="container" history="true" changeTitle="true" lazy="true" iframeHeight="100%" iframeWidth="100%">
                 <link rel="stylesheet" href="./CSS/reset.css">
             </fetch-container>
         </main>
