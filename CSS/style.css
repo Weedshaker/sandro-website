@@ -17,7 +17,7 @@ header {
     display: flex;
     justify-content: space-between;
 }
-header fetch-href {
+header menu-icon {
     flex: 0 0 auto;
     margin: 3px;
 }
@@ -29,7 +29,7 @@ footer {
     text-align: center;
 }
 footer * {
-    font-size: 0.3rem;
+    font-size: 0.5rem;
     margin-top: 3px;
 }
 main {
@@ -48,4 +48,10 @@ main fetch-container {
 }
 main fetch-container.html {
     padding: 10px;
+}
+main fetch-href {
+    visibility: hidden;
+}
+main fetch-href.open {
+    visibility: visible;
 }
