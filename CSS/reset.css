@@ -22,7 +22,7 @@ body, html {
     width:100%;
 }
 a {
-    color: var(--color-font1);
+    color: var(--color-font2);
     text-decoration: none;
 }
 a:visited {

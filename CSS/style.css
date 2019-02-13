@@ -35,6 +35,8 @@ footer * {
 main {
     background-color: var(--color-font1);
     color: var(--color-font2);
+    display: flex;
+    justify-content: space-evenly;
     overflow-x: hidden;
     overflow-y: auto;
 }
@@ -42,7 +44,6 @@ main fetch-container {
     display: block;
     height: 100%;
     height: calc(100% - 4px); /* makes iframe sidebar disappear */
-    margin: 0 auto;
     max-width: 520px;
     width: 100%;
 }
@@ -50,6 +51,8 @@ main fetch-container.html {
     padding: 10px;
 }
 main fetch-href {
+    position: sticky;
+    top: 0;
     visibility: hidden;
 }
 main fetch-href.open {
