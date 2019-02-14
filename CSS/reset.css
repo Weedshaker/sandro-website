@@ -12,7 +12,7 @@
     --color-font4: red;
     box-sizing: border-box;
     font-family: 'cp_revengeregular', Arial, Helvetica, sans-serif;
-    font-size: 2vmin;
+    font-size: 17px; /* if passed into shadow dom, vim is calculated from shadow dom size */
     margin: 0;
     padding: 0;
 }
@@ -22,7 +22,7 @@ body, html {
     width:100%;
 }
 a {
-    color: var(--color-font2);
+    color: var(--color-font1);
     text-decoration: none;
 }
 a:visited {

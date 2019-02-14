@@ -27,21 +27,25 @@
     <section id="page">
         <header>
             <fetch-container href="./Pages/logo/home.html" iframeHeight="100%" lazy="true"></fetch-container>
-            <menu-icon width="50px" height="7px" querySelector="main fetch-href"></menu-icon>
+            <menu-icon width="50px" height="7px" querySelector="main > div#nav"></menu-icon>
         </header>
         <main>
-            <fetch-container id="container" history="true" changeTitle="true" lazy="true" iframeHeight="100%" iframeWidth="100%">
-                <link rel="stylesheet" href="./CSS/reset.css">
-            </fetch-container>
-            <fetch-href fetchToId="container" lazy="true" setHash="true" shadow="false">
-                <nav>
-                    <ul>
-                        <li><a href="./Pages/controls.html" autoLoad="true">controls</a></li>
-                        <li><a href="./Pages/contact.html">contact</a></li>
-                        <li><a href="./Pages/twitter.html">twitter</a></li>
-                    </ul>
-                </nav>
-            </fetch-href>
+            <div id="content">
+                <fetch-container id="container" history="true" changeTitle="true" lazy="true" iframeHeight="100%" iframeWidth="100%">
+                    <link rel="stylesheet" href="./CSS/reset.css">
+                </fetch-container>
+            </div>
+            <div id="nav">
+                <fetch-href fetchToId="container" lazy="true" setHash="true" shadow="false">
+                    <nav>
+                        <ul>
+                            <li><a href="./Pages/controls.html" autoLoad="true">controls</a></li>
+                            <li><a href="./Pages/contact.html">contact</a></li>
+                            <li><a href="./Pages/twitter.html">twitter</a></li>
+                        </ul>
+                    </nav>
+                </fetch-href>
+            </div>
         </main>
         <footer><p><now-year>2014</now-year> ShogaIX Productions. All rights reserved.</p></footer>
     </section>
