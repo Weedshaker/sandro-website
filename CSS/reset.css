@@ -12,9 +12,10 @@
     --color-font4: red;
     box-sizing: border-box;
     font-family: 'cp_revengeregular', Arial, Helvetica, sans-serif;
-    font-size: 17px; /* if passed into shadow dom, vim is calculated from shadow dom size */
+    font-size: 15px; /* if passed into shadow dom, vim is calculated from shadow dom size */
     margin: 0;
     padding: 0;
+    scroll-behavior: smooth;
 }
 body, html {
     height:100%;
@@ -31,4 +32,16 @@ a:visited {
 }
 a.active, a:hover {
     color: var(--color-font4);
+}
+h1 {
+    font-size: 4rem;
+}
+h2 {
+    font-size: 3rem;
+}
+h3 {
+    font-size: 2.2rem;
+}
+h4 {
+    font-size: 1.5rem;
 }

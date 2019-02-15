@@ -43,7 +43,7 @@ main {
 }
 main > div#content {
     flex: 2;
-    overflow-y: auto;
+    overflow: auto;
 }
 main > div#content fetch-container {
     display: block;
