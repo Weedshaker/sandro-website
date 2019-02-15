@@ -43,7 +43,9 @@ main {
 }
 main > div#content {
     flex: 2;
-    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+    word-break: break-all;
 }
 main > div#content fetch-container {
     display: block;
