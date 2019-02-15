@@ -45,6 +45,8 @@ main > div#content {
     flex: 2;
     overflow-x: hidden;
     overflow-y: auto;
+}
+main.open > div#content {
     word-break: break-all;
 }
 main > div#content fetch-container {
@@ -65,7 +67,7 @@ main > nav {
     transition: flex-grow 300ms ease-out, width 100ms ease-out, height 100ms ease-out;
     width: 0;
 }
-main > nav.open {
+main.open > nav {
     flex-grow: 1;
     width: auto;
 }
