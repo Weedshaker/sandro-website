@@ -45,3 +45,14 @@ h3 {
 h4 {
     font-size: 1.5rem;
 }
+h1, h2, h3, h4 {
+    margin: 1rem;
+    margin-bottom: 2rem;
+}
+img {
+    max-width: 100%;
+    height: auto;
+}
+p {
+    margin-bottom: 1rem;
+}
