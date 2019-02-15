@@ -3,7 +3,7 @@
   "short_name": "Shoga9Team",
   "theme_color": "#ffffff",
   "background_color": "#000000",
-  "display": "browser",
+  "display": "minimal-ui",
   "orientation": "portrait",
   "Scope": "./",
   "start_url": "./",
