@@ -27,7 +27,7 @@
     <section id="page">
         <header>
             <fetch-container href="./Pages/logo/home.html" iframeHeight="100%" lazy="true"></fetch-container>
-            <menu-icon width="50px" height="7px" querySelector="main > div#nav"></menu-icon>
+            <menu-icon width="50px" height="7px" querySelector="main > nav"></menu-icon>
         </header>
         <main>
             <div id="content">
@@ -35,17 +35,13 @@
                     <link rel="stylesheet" href="./CSS/reset.css">
                 </fetch-container>
             </div>
-            <div id="nav">
+            <nav>
                 <fetch-href fetchToId="container" lazy="true" setHash="true" shadow="false">
-                    <nav>
-                        <ul>
-                            <li><a href="./Pages/controls.html" autoLoad="true">controls</a></li>
-                            <li><a href="./Pages/contact.html">contact</a></li>
-                            <li><a href="./Pages/twitter.html">twitter</a></li>
-                        </ul>
-                    </nav>
+                    <a href="./Pages/controls.html" autoLoad="true">controls</a>
+                    <a href="./Pages/contact.html">contact</a>
+                    <a href="./Pages/twitter.html">twitter</a>
                 </fetch-href>
-            </div>
+            </nav>
         </main>
         <footer><p><now-year>2014</now-year> ShogaIX Productions. All rights reserved.</p></footer>
     </section>

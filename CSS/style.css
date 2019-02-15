@@ -8,7 +8,7 @@
     height: 100vh;
     width: 100vw;
 }
-header, footer, main > div#nav {
+header, footer, main > nav {
     background-color: var(--color-font2);
     color: var(--color-font1);
     z-index: 100;
@@ -35,15 +35,14 @@ footer * {
     margin-top: 3px;
 }
 main {
-    align-items: stretch;
     background-color: var(--color-font1);
     color: var(--color-font2);
     display: flex;
-    justify-content: stretch;
+    flex-flow: row;
     overflow: hidden;
 }
 main > div#content {
-    flex: 3;
+    flex: 2;
     overflow-y: auto;
 }
 main > div#content fetch-container {
@@ -59,58 +58,26 @@ main > div#content fetch-container.iframe {
     height: 100%;
     height: calc(100% - 4px); /* makes iframe sidebar disappear */
 }
-main > div#nav {
-    flex: 0 0 auto;
-    opacity: 0;
-    top: 0;
+main > nav {
+    flex-grow: 0.00001;
+    transition: flex-grow 300ms ease-out, width 100ms ease-out, height 100ms ease-out;
     width: 0;
 }
-main > div#nav.open {
-    animation: flexExpand 1s ease-out;
-    flex: 1;
-    opacity: 1;
+main > nav.open {
+    flex-grow: 1;
+    width: auto;
 }
-@keyframes flexExpand {
-    from {
-        flex: 0 0 auto;
-        opacity: 0;
-    }
-    to {
-        flex: 1;
-        opacity: 1;
-    }
-}
-main > div#nav fetch-href, main > div#nav fetch-href nav {
-    height: 100%;
-}
-main > div#nav fetch-href nav ul {
-    align-items: stretch;
+main > nav fetch-href {
     display: flex;
     flex-direction: column;
     height: 100%;
     justify-content: center;
-    list-style: none;
 }
-main > div#nav fetch-href nav ul li {
+main > nav fetch-href a {
     border-bottom: solid 1px var(--color-font1);
     padding: 10px;
     text-align: center;
 }
-main > div#nav fetch-href nav ul li:first-child {
+main > nav fetch-href a:first-child {
     border-top: solid 1px var(--color-font1);
-}
-main > div#nav fetch-href nav ul li a {
-    display: block;
-}
-@media screen and (max-width: 699px) {
-    main {
-        flex-direction: column-reverse;
-    }
-    main > div#nav {
-        height: 0;
-        width: auto;
-    }
-    main > div#nav fetch-href nav ul li:first-child {
-        border-top: 0;
-    }
 }
