@@ -44,7 +44,10 @@
         <main>
             <div id="content">
                 <init-delete>
-                    <style>p{text-align: center; margin: 10px auto;}</style>
+                    <style>
+                        p { animation: 15s loading ease-in forwards; opacity: 0; margin: 0 auto; padding: 10px; text-align: center; }
+                        @keyframes loading { to { opacity: 1; } }
+                    </style>
                     <p>Loading...<br>if you keep seeing this message for more than max. 10sec., then your browser is outdated and doesn't support web components.<br>Please, visit us with a newer browser version!</p>
                 </init-delete>
                 <fetch-container id="container" history="true" changeTitle="true" lazy="true" iframeHeight="100%" iframeWidth="100%">
