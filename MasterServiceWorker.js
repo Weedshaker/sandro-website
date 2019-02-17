@@ -6,7 +6,7 @@ class MasterServiceWorker {
 			'./',
 			'./favicon.gif'
 		]
-		this.doNotIntercept = ['analytics.js']
+		this.doNotIntercept = ['googletagmanager']
 		this.doIntercept = [location.origin]
 	}
 	run(){
