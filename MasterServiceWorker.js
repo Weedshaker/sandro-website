@@ -39,11 +39,9 @@ class MasterServiceWorker {
 					// race fetch vs. cache to resolve
 					this.getFetch(event).then(response => doResolve(response)).catch(error => { // start fetching and caching
 						console.info(`Can't fetch ${event.request.url}`, error)
-						return doResolve(null)
 					})
 					this.getCache(event).then(response => doResolve(response)).catch(error => { // grab cache
 						console.info(`Can't get cache ${event.request.url}`, error)
-						return doResolve(null)
 					})
 				})
 				: fetch(event.request)
