@@ -46,8 +46,12 @@ main > div#content {
     overflow-x: hidden;
     overflow-y: auto;
 }
-main.open > div#content {
-    word-break: break-all;
+@media only screen 
+  and (max-width: 480px)
+  and (orientation: portrait) {
+      main.open > div#content {
+          word-break: break-all;
+      }
 }
 main > div#content fetch-container {
     display: block;
