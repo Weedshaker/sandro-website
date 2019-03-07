@@ -21,8 +21,23 @@ header {
     display: flex;
     justify-content: space-between;
 }
-header fetch-container {
+header fetch-container, header img {
     margin-left: 3px;
+}
+header img {
+    cursor: pointer;
+    margin-bottom: 2px;
+    max-height: 75%;
+}
+@media only screen 
+  and (min-width: 481px)
+  and (orientation: landscape) {
+    header img {
+        max-width: 34%;
+    }
+}
+header fetch-container img {
+    max-height: 100%;
 }
 header menu-icon {
     margin: 3px;

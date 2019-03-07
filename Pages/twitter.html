@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Shoga9Team - Twitter</title>
+    <link rel="stylesheet" href="../CSS/reset.css">
     <style>
         html,
         body,
@@ -11,11 +12,21 @@
             padding: 0;
             height: 100%;
         }
+        #wrapper a {
+            color: var(--color-font2);
+            display: block;
+            text-decoration: underline;
+            text-align: center;
+            width: 100%;
+        }
+        #wrapper a.active, #wrapper a:hover {
+            color: var(--color-font4);
+        }
     </style>
 </head>
 <body>
     <div id="wrapper">
-        <a id="twitter" data-width="520" data-height="1000" class="twitter-timeline" href="https://twitter.com/Shoga9Team?ref_src=twsrc%5Etfw"></a>
+        <a id="twitter" data-width="520" data-height="1000" class="twitter-timeline" target="_blank" href="https://twitter.com/Shoga9Team">Check it out on Twitter!</a>
         <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         <script>
             document.getElementById('twitter').setAttribute('data-height', document.getElementById('wrapper').offsetHeight)
