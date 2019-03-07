@@ -30,10 +30,9 @@ header img {
     max-height: 75%;
 }
 @media only screen 
-  and (min-width: 481px)
   and (orientation: landscape) {
     header img {
-        max-width: 34%;
+        max-height: 70%;
     }
 }
 header fetch-container img {
