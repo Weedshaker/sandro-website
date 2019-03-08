@@ -39,13 +39,15 @@
     <section id="page">
         <header>
             <!--<fetch-container href="./Pages/logo/home.html" iframeHeight="100%" lazy="true"></fetch-container>-->
-            <img onclick="(() => {
-                const fetchContainer = document.createElement('fetch-container')
-                fetchContainer.setAttribute('href', './Pages/logo/home.html')
-                fetchContainer.setAttribute('iframeHeight', '100%')
-                fetchContainer.setAttribute('lazy', 'true')
-                this.parentNode.replaceChild(fetchContainer, this)
-            })()" src="./Pages/logo/Resources/Items/ShogaIXlogo.svg" />
+            <div>
+                <img onclick="(() => {
+                    const fetchContainer = document.createElement('fetch-container')
+                    fetchContainer.setAttribute('href', './Pages/logo/home.html')
+                    fetchContainer.setAttribute('iframeHeight', '100%')
+                    fetchContainer.setAttribute('lazy', 'true')
+                    this.parentNode.replaceChild(fetchContainer, this)
+                })()" src="./Pages/logo/Resources/Items/ShogaIXlogo.svg" />
+            </div>
             <menu-icon width="50px" height="7px" querySelector="main"></menu-icon>
         </header>
         <main>

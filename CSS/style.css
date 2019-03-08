@@ -26,17 +26,16 @@ header fetch-container, header img {
 }
 header img {
     cursor: pointer;
-    margin-bottom: 2px;
-    max-height: 75%;
+    max-height: 70%;
 }
 @media only screen 
-  and (orientation: landscape) {
-    header img {
-        max-height: 70%;
+  and (min-width: 369px) {
+    header div {
+        display: contents;
     }
-}
-header fetch-container img {
-    max-height: 100%;
+    header img {
+        margin-bottom: 2px;
+    }
 }
 header menu-icon {
     margin: 3px;
