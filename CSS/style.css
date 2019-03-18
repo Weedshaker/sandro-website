@@ -25,11 +25,10 @@ header fetch-container, header img {
     margin-left: 3px;
 }
 header img {
-    cursor: pointer;
     max-height: 70%;
 }
 @media only screen 
-  and (min-width: 369px) {
+  and (min-width: 508px) {
     header div {
         display: contents;
     }
