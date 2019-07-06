@@ -7,13 +7,62 @@
         * {
             text-align: center;
         }
+        button {
+            z-index: 1;
+            position: absolute;
+            font-size: 2rem;
+            font-family: inherit;
+            color: white;
+            padding: 0.5em 1em;
+            outline: none;
+            border: none;
+            background-color: #214497;
+            transform: rotate(-15deg);
+            left: 10rem;
+            top: 5rem;
+            opacity: 0.8;
+        }
+        @media only screen 
+        and (max-width: 480px)
+        and (orientation: portrait) {
+            button {
+                left: 7rem;
+                top: 4rem;
+            }
+        }
+        button:hover {
+            cursor: pointer;
+        }
+        button::before {
+            content: '';
+            z-index: -1;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            border: 4px solid #214497;
+            transform-origin: center;
+            transform: scale(1);
+        }
+        button:hover::before {
+            transition: all 0.75s ease-in-out;
+            transform-origin: center;
+            transform: scale(1.75);
+            opacity: 0;
+        }
+        .container {
+            display: inline-block;
+            position: relative;
+        }
     </style>
 </head>
 <body>
     <h1>Taru Taro Legends</h1>
     <h4>is our beloved and ongoing game project</h4>
-    <img src="./images/title.jpg">
-    <p>First Public Demo Release<br>6th of July 2019</p>
-    <p style="font-style: italic;">Please, check back later...<img style="width: 1rem; height: auto;" src="./images/heart.png"></p>
+    <a href="https://tarutarolegends.com" target="_blank" class="container">
+        <img src="./images/title.jpg">
+        <button>Play</button>
+    </a>
 </body>
 </html>
