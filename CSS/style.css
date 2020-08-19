@@ -102,6 +102,9 @@ main > nav fetch-href a {
 main > nav fetch-href a:visited {
     color: var(--color-font1);
 }
+main > nav fetch-href a.active, main > nav fetch-href a:hover {
+    color: var(--color-font4);
+}
 main > nav fetch-href a:first-child {
     border-top: solid 1px var(--color-font1);
 }
