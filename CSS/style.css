@@ -94,6 +94,7 @@ main > nav fetch-href {
     justify-content: center;
 }
 main > nav fetch-href a {
+    background-color: darkgray;
     border-bottom: solid 1px var(--color-font1);
     padding: 10px;
     text-align: center;
