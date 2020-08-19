@@ -1,24 +1,19 @@
 {
-  "name": "shoga9website",
+  "name": "Sandro Melone",
   "version": "1.0.0",
-  "description": "The Shoga9Team Website",
+  "description": "The Sandro Melone Website",
   "main": "index.html",
   "scripts": {
     "test": ""
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Shoga9Team/website.git"
   },
   "keywords": [
-    "Shoga9Team",
-    "TaruTaroLegends",
+    "Sandro Melone",
+    "Rechtsberatung",
     "Website"
   ],
-  "author": "Shoga9Team",
-  "license": "No",
-  "bugs": {
-    "url": "https://github.com/Shoga9Team/website/issues"
-  },
-  "homepage": "https://github.com/Shoga9Team/website#readme"
+  "author": "Silvan Struebi",
+  "license": "No"
 }

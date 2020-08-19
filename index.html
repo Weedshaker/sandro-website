@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
+    <!--
     <script async src="./JavaScript/gtag.js"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -9,16 +10,17 @@
         gtag('js', new Date());
         gtag('config', 'UA-76753121-2');
     </script>
+     -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3.0, minimum-scale=1">
-    <meta name="Description" content="Shoga9Team aka The Maker of Taru Taro Legends">
+    <meta name="Description" content="Sandro Melone aka der Schreck aller Arbeitgeber, der kämpft für Gerechtigkeit!">
     <meta name="theme-color" content="#000000" />
     <base href="./">
-    <link rel="shortcut icon" href="./favicon.gif" type="image/x-icon">
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
     <link rel="manifest" href="./manifest.json">
     <link rel="stylesheet" href="./CSS/reset.css">
     <link rel="stylesheet" href="./CSS/style.css">
-    <title>Shoga9Team</title>
+    <title>Sandro Melone</title>
 </head>
 <body>
     <script rel="preload" type="module">
@@ -38,16 +40,7 @@
     </script>
     <section id="page">
         <header>
-            <!--<fetch-container href="./Pages/logo/home.html" iframeHeight="100%" lazy="true"></fetch-container>-->
-            <div>
-                <img onclick="(() => {
-                    const fetchContainer = document.createElement('fetch-container')
-                    fetchContainer.setAttribute('href', './Pages/logo/home.html')
-                    fetchContainer.setAttribute('iframeHeight', '100%')
-                    fetchContainer.setAttribute('lazy', 'true')
-                    this.parentNode.replaceChild(fetchContainer, this)
-                })()" src="./Pages/logo/Resources/Items/ShogaIXlogo.svg" />
-            </div>
+            <div>&nbsp;</div>
             <menu-icon width="50px" height="7px" querySelector="main"></menu-icon>
         </header>
         <main>
@@ -65,14 +58,12 @@
             </div>
             <nav>
                 <fetch-href fetchToId="container" lazy="true" setHash="true" shadow="false">
-                    <a href="./Pages/tarutarolegends/tarutarolegends.html" autoLoad="true">Taru Taro Legends</a>
-                    <a href="./Pages/wireframe.html">Wireframe Article</a>
-                    <a href="./Pages/twitter.html">News Feed</a>
-                    <a rel="author" href="https://github.com/orgs/Shoga9Team/people" target="_blank">Credits</a>
+                    <a href="./Pages/home/index.html" autoLoad="true">Home</a>
+                    <a href="./Pages/contact/index.html">Kontakt</a>
                 </fetch-href>
             </nav>
         </main>
-        <footer><p><now-year>2014</now-year> ShogaIX Productions. All rights reserved.</p></footer>
+        <footer><p><now-year>2020</now-year> Sandro Melone. All rights reserved.</p></footer>
     </section>
 </body>
 </html>
