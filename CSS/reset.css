@@ -17,6 +17,7 @@
     margin: 0;
     padding: 0;
     scroll-behavior: smooth;
+    word-break: break-word;
 }
 body, html {
     height:100%;
@@ -35,10 +36,10 @@ a.active, a:hover {
     color: var(--color-font4);
 }
 h1 {
-    font-size: 3.4rem;
+    font-size: 3rem;
 }
 h2 {
-    font-size: 3rem;
+    font-size: 2.7rem;
 }
 h3 {
     font-size: 2.2rem;
