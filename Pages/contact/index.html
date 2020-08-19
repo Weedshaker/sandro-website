@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Rechtsvertretung</title>
+    <!-- this is loaded as an iframe because of script tag and needs image setting -->
+    <link rel="stylesheet" href="../../CSS/reset.css">
     <style>
         * {
             text-align: center;
@@ -12,11 +14,23 @@
             display: inline-block;
             position: relative;
         }
+        a {
+            color: #335E71;
+            display: block;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
     <h1>Kontakt</h1>
-    <h4>Ciao</h4>
-    <p>ragazzzzo</p>
+    <h4>Sandro Mellone</h4>
+    <img src="./images/beratung.jpg">
+    <script>
+        let emailE = 'gmail.com'
+        emailE = ('sandrolito' + '@' + emailE)
+        document.write('<a href="mailto:' + emailE + '">' + emailE + '</a>')
+        const tel = '079 229 30 75'
+        document.write(`<a href="tel:${tel}">Tel.: ${tel}</a>`)
+    </script>
 </body>
 </html>
