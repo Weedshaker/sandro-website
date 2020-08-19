@@ -1,7 +1,7 @@
 {
-  "name": "Sandro Melone",
+  "name": "Sandro Mellone",
   "version": "1.0.0",
-  "description": "The Sandro Melone Website",
+  "description": "The Sandro Mellone Website",
   "main": "index.html",
   "scripts": {
     "test": ""
@@ -10,7 +10,7 @@
     "type": "git"
   },
   "keywords": [
-    "Sandro Melone",
+    "Sandro Mellone",
     "Rechtsberatung",
     "Website"
   ],
